@@ -21,21 +21,27 @@ export default function Home() {
             <button
             key={template.id}
             onClick={()=>setSelectedTemplate(template)}
-            className={template.id === selectedTemplate?.id && 'selected'}
+            className={template.id === selectedTemplate?.id ? 'selected':''}
             >
             <img src={template.url} alt={template.name}></img>
           </button>
           ))}
           
         </Templates>
-        <h2>Textos</h2>
-        <Form>
-            <input placeholder="Texto"/>
-            <input placeholder="Texto"/>
-            <input placeholder="Texto"/>
-            <input placeholder="Texto"/>
-            <Button type="submit">MakeMyMeme</Button>
-        </Form>
+        {selectedTemplate &&(
+            <>
+             <h2>Textos</h2>
+             <Form>
+                 {(new Array(selectedTemplate.box_count)).fill('').map((_,index)=>(
+                    <input
+                        key={String(Math.random())}
+                        placeholder={`text #${index +1}`}
+                    />
+                 ))}
+                 <Button type="submit">MakeMyMeme</Button>
+             </Form>
+             </>
+        )}
       </Card>
     </Wrapper>
   );

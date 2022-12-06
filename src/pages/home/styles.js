@@ -32,12 +32,15 @@ export const Templates = styled.div`
   padding: 0 15px;
   margin-bottom: 30px;
   button {
-    border: 0;
+    border: 2px solid transparent;
     background: transparent;
     margin-right: 10px;
     img {
       width: 53px;
       height: 53px;
+    }
+    &.selected {
+      border-color: #4395d8;
     }
   }
 `;
@@ -58,13 +61,13 @@ export const Button = styled.button`
   height: 40px;
   border: 0;
   border-radius: 8px;
-  background: #4395D8;
+  background: #4395d8;
   color: #fff;
   font-weight: bold;
-  transition:background 0.2s ease-in;
+  transition: background 0.2s ease-in;
   font-size: 14px;
 
-  &:hover{
-    background: #3672A3;
+  &:hover {
+    background: #3672a3;
   }
 `;
