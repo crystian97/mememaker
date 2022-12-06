@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Templates, Wrapper } from "./styles";
+import { Button, Card, Form, Templates, Wrapper } from "./styles";
 import Logo from "../../images/logo.svg";
 export default function Home() {
   return (
@@ -24,6 +24,14 @@ export default function Home() {
             <img></img>
           </button>
         </Templates>
+        <h2>Textos</h2>
+        <Form>
+            <input placeholder="Texto"/>
+            <input placeholder="Texto"/>
+            <input placeholder="Texto"/>
+            <input placeholder="Texto"/>
+            <Button type="submit">Make my meme</Button>
+        </Form>
       </Card>
     </Wrapper>
   );
