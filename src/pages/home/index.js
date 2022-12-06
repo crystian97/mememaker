@@ -5,7 +5,9 @@ export default function Home(){
     return (
         <Wrapper>
             <img src={Logo}/>
-            <Card></Card>
+            <Card>
+                <h2>Selecione um template</h2>
+            </Card>
         </Wrapper>
     )
 }

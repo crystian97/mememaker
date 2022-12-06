@@ -15,4 +15,8 @@ export const Card = styled.div`
     padding:20px;
     margin-top: 15px;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.20);
+    h2{
+        font-size:22px;
+        color: #392d2d;
+    }
 `
