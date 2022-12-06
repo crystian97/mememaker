@@ -18,5 +18,13 @@ export const Card = styled.div`
     h2{
         font-size:22px;
         color: #392d2d;
+        margin-bottom: 10px;
     }
+`
+export const Templates = styled.div`
+width: 100%;
+height: 90px;
+background: #eee;
+border-radius: 8px;
+overflow-y: auto;
 `

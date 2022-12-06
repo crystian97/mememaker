@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Wrapper } from "./styles";
+import { Card, Templates, Wrapper } from "./styles";
 import Logo from '../../images/logo.svg'
 export default function Home(){
     return (
@@ -7,6 +7,9 @@ export default function Home(){
             <img src={Logo}/>
             <Card>
                 <h2>Selecione um template</h2>
+                <Templates>
+                    
+                </Templates>
             </Card>
         </Wrapper>
     )
