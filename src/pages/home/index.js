@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
+import qs from 'qs'
 import { Button, Card, Form, Templates, Wrapper } from "./styles";
 import Logo from "../../images/logo.svg";
 export default function Home() {
     const [templates,setTemplates] = useState([])
     const [selectedTemplate,setSelectedTemplate] = useState(null)
     const [boxes,setBoxes] = useState([])
-    const params = {
-        template_id:selectedTemplate.id,
-        username:'vikayel543',
-        password:'vikayel543',
-        boxes:boxes.map(text =>({text}))
-
-    }
+    const [generatedMeme,setGenatedMeme] = useState(null)
+    
     useEffect(()=>{
         (async ()=>{
             const resp = await fetch('https://api.imgflip.com/get_memes');
@@ -28,15 +24,36 @@ export default function Home() {
         newValues[index] = e.target.value;
         setBoxes(newValues);
     }
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
-        console.log(boxes)
+        const params =qs.stringify( {
+            template_id:selectedTemplate.id,
+            username:'vikayel543',
+            password:'vikayel543',
+            boxes:boxes.map(text =>({text}))
+        })
+        const resp = await fetch(`https://api.imgflip.com/caption_image?${params}`)
+        const {data:{url}} = await resp.json();
+        setGenatedMeme(url)
+    }
+    function handleReset(){
+        setSelectedTemplate(null)
+        setBoxes([])
+        setGenatedMeme(null)
     }
   return (
     <Wrapper>
       <img src={Logo} alt='mememaker' />
       <Card>
-        <h2>Selecione um template</h2>
+        {generatedMeme &&(
+            <>
+            <img src={generatedMeme} alt="generated meme"/>
+            <Button type="button" onClick={handleReset}>Criar outro meme</Button>
+            </>
+        )}
+       {!generatedMeme &&(
+        <>
+         <h2>Selecione um template</h2>
         <Templates>
           {templates.map((template)=>(
             <button
@@ -65,7 +82,10 @@ export default function Home() {
                  <Button type="submit">MakeMyMeme</Button>
              </Form>
              </>
-        )}
+        )
+        }
+        </>
+       )}
       </Card>
     </Wrapper>
   );
